@@ -59,8 +59,6 @@ public class TrainControllerImpl implements TrainController {
             Thread.currentThread().interrupt();
         }
 
-        followSpeed();
-
     }
 
     public void doubleSpeedLimit() {
