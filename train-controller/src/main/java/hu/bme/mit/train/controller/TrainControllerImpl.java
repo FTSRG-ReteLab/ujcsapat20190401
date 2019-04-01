@@ -6,6 +6,8 @@ import hu.bme.mit.train.interfaces.TrainController;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TrainControllerImpl implements TrainController {
 
@@ -13,15 +15,16 @@ public class TrainControllerImpl implements TrainController {
     private int step = 0;
     private int referenceSpeed = 0;
     private int speedLimit = 0;
+    private Timer timer;
 
     public TrainControllerImpl() {
-        timer = new java.util.Timer();
-        timer.scheduleAtFixedRate(new java.util.TimerTask() {
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 followSpeed();
             }
-        });
+        }, 2000,2000);
     }
 
     @Override
