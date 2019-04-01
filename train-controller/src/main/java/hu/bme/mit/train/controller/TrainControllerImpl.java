@@ -7,6 +7,8 @@ public class TrainControllerImpl implements TrainController {
 	private int step = 0;
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
+	
+	private static final Logger LOGGER = Logger.getLogger("TrainControllerImpl");
 
 	@Override
 	public void followSpeed() {
@@ -43,7 +45,16 @@ public class TrainControllerImpl implements TrainController {
 
 	@Override
 	public void setJoystickPosition(int joystickPosition) {
-		this.step = joystickPosition;		
+		this.step = joystickPosition;	
+		
+		try {
+	            Thread.sleep(1000);
+	        } catch (InterruptedException e) {
+	            LOGGER.log(Level.WARNING, "Interrupted!", e);
+	            // Restore interrupted state...
+	            Thread.currentThread().interrupt();
+	        }
+		followSpeed();
 	}
 
 }
